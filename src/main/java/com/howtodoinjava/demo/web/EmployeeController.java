@@ -2,6 +2,9 @@ package com.howtodoinjava.demo.web;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,6 +26,8 @@ import com.howtodoinjava.demo.service.EmployeeService;
 @RequestMapping("/api/v1/employees")
 public class EmployeeController
 {
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+    
     @Autowired
     EmployeeService service;
 
