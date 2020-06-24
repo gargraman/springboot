@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.howtodoinjava.demo.exception.RecordNotFoundException;
+import com.howtodoinjava.demo.model.Employee;
 import com.howtodoinjava.demo.model.EmployeeEntity;
 import com.howtodoinjava.demo.service.EmployeeService;
 
@@ -32,26 +31,26 @@ public class EmployeeController
     EmployeeService service;
 
     @GetMapping
-    public ResponseEntity<List<EmployeeEntity>> getAllEmployees()
+    public ResponseEntity<List<Employee>> getAllEmployees()
     {
-        List<EmployeeEntity> list = service.getAllEmployees();
-        return new ResponseEntity<List<EmployeeEntity>>(list, new HttpHeaders(), HttpStatus.OK);
+        List<Employee> list = service.getAllEmployees();
+        return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable("id") Long id) throws RecordNotFoundException
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) throws RecordNotFoundException
     {
-        EmployeeEntity entity = service.getEmployeeById(id);
+    	Employee entity = service.getEmployeeById(id);
 
-        return new ResponseEntity<EmployeeEntity>(entity, new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeEntity> createOrUpdateEmployee(@RequestBody EmployeeEntity employee)
+    public ResponseEntity<Employee> createOrUpdateEmployee(@RequestBody Employee employee)
         throws RecordNotFoundException
     {
-        EmployeeEntity updated = service.createOrUpdateEmployee(employee);
-        return new ResponseEntity<EmployeeEntity>(updated, new HttpHeaders(), HttpStatus.OK);
+    	Employee updated = service.createOrUpdateEmployee(employee);
+        return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
