@@ -1,0 +1,1 @@
+docker run --name=mysql -v db_data:/var/lib/mysql -p 3306:3306 --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE=demo --env MYSQL_USER=dbuser --env MYSQL_PASSWORD=password  --restart on-failure -d mysql:5.7
